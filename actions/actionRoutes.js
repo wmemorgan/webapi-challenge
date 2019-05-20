@@ -39,6 +39,18 @@ router.put('/:id', idContentCheck, async (req, res) => {
 })
 
 //===== DELETE methods ===== //
+router.delete('/:id', validateActionId, async (req, res) => {
+  try {
+    let data = await Action.remove(req.params.id)
+    if (data <= 0) throw err
+    else {
+      res.json({ message: `Successfully deleted action item number: ${req.params.id}. ` })
+    }
+  }
+  catch (err) {
+    res.status(500).json({ message: `Error deleting action item.` })
+  }
+})
 
 // ==== Custom middleware ==== //
 async function validateActionId(req, res, next) {

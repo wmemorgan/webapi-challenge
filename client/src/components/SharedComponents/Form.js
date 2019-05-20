@@ -3,15 +3,30 @@ import { connect } from 'react-redux'
 import { FormContainer } from './FormStyles'
 import Button from '../DesignComponents/Button'
 
-import { addSmurf, updateSmurf, deleteSmurf } from '../../actions'
+import { addProject, updateProject, deleteProject } from '../../actions/projects'
 
 class Form extends Component {
   state = {
     id: '',
     name: '',
-    age: '',
-    height: ''
+    description: '',
+    completed: false
   }
+
+  toggleProjectComplete = () => {
+    console.log(`toggleProjectComplete before change: `, this.state.completed)
+    this.setState({ completed: !this.state.completed },
+      () => {
+        console.log(`toggleProjectComplete: `, this.state.completed)
+        // Update project record
+        let updatedProject = {
+          ...this.props.project,
+          completed: this.state.completed
+        }
+        this.props.updateData(updatedProject)
+      }
+    )
+  } 
 
   handleInput = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -104,16 +119,19 @@ class Form extends Component {
                 placeholder="Name" onChange={this.handleInput}
                 value={this.state.name}
               />
-              <input name="age" type="number"
-                placeholder="Age" onChange={this.handleInput}
-                value={this.state.age}
-              />
-              <input name="height" type="height"
-                placeholder="height" onChange={this.handleInput}
-                value={this.state.height}
+              <input name="description" type="text"
+                placeholder="Description" onChange={this.handleInput}
+                value={this.state.description}
               />
             </>
           )}
+          {(this.props.update || this.props.delete) &&
+            <input
+            type="checkbox"
+            defaultChecked={this.state.completed}
+            onChange={this.toggleProjectComplete}
+            />
+          }
           <Button type="submit" {...this.props}>
             {`${this.props.add ? 'Add' : ''} 
               ${this.props.update ? 'Update' : ''}  
@@ -129,7 +147,7 @@ class Form extends Component {
 }
 
 export default connect(null, { 
-  addData: addSmurf, 
-  updateData: updateSmurf,
-  deleteData: deleteSmurf
+  addData: addProject, 
+  updateData: updateProject,
+  deleteData: deleteProject
 })(Form)

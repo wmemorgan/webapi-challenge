@@ -3,11 +3,10 @@ const Project = require('../data/helpers/projectModel')
 
 //==== Missing Project ID Error handling ====//
 async function validateProjectId(req, res, next) {
-  const { id } = req.params
   try {
-    const project = await Project.get(id)
-    if (project) {
-      req.project = project
+    const data = await Project.get(req.params.id)
+    if (data) {
+      req.project = data
       next()
     } else {
       res.status(404).json({ message: `Project id does not exist.` })

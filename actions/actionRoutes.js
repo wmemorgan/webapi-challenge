@@ -2,13 +2,13 @@ const express = require('express')
 // Load database methods
 const Action = require('../data/helpers/actionModel')
 // Load middleware
-
+const idContentCheck = [validateActionId, requiredActionContent]
 // Instantiate Express Router
 const router = express.Router()
 
 //===== GET methods ===== //
 router.get('/', async (req, res) => {
-  let data = await Actions.get()
+  let data = await Action.get()
   res.json(data)
 })
 
@@ -28,12 +28,20 @@ router.post('/', requiredActionContent, async (req, res) => {
 })
 
 //===== PUT methods ===== //
+router.put('/:id', idContentCheck, async (req, res) => {
+  try {
+    let data = await Action.update(req.params.id, req.body)
+    res.json(data)
+  }
+  catch (err) {
+    res.status(500).json({ message: `Error updating action item` })
+  }
+})
 
 //===== DELETE methods ===== //
 
 // ==== Custom middleware ==== //
 async function validateActionId(req, res, next) {
-  console.log(`validateActionId req.params: `, req.params)
   try {
     const data = await Action.get(req.params.id)
     req.action = data
@@ -45,7 +53,6 @@ async function validateActionId(req, res, next) {
 }
 
 function requiredActionContent(req, res, next) {
-  console.log(`requiredActionContent`, req.project.id)
   if (!req.body || !Object.keys(req.body).length) {
     res.status(400).json({ message: "Missing action data" })
   } else if (!req.body.project_id || !req.body.description || !req.body.notes) {

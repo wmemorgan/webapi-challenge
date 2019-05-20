@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './components/DesignComponents/GlobalStyle'
@@ -12,8 +13,10 @@ const root = document.getElementById('root')
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <GlobalStyle />
-      <App />
+      <Router>
+        <GlobalStyle />
+        <App />
+      </Router>
     </Provider>
   </ThemeProvider>,
   root

@@ -1,6 +1,6 @@
 const express = require('express')
 // Load database methods
-const Action = require('../data/helpers/actionModel')
+const Action = require('../../data/helpers/actionModel')
 // Load middleware
 const idContentCheck = [validateActionId, requiredActionContent]
 // Instantiate Express Router

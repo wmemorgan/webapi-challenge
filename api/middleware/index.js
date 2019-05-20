@@ -1,5 +1,5 @@
 // Load database methods
-const Project = require('../data/helpers/projectModel')
+const Project = require('../../data/helpers/projectModel')
 
 //==== Missing Project ID Error handling ====//
 async function validateProjectId(req, res, next) {

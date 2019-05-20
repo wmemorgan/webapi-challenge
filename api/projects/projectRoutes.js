@@ -1,6 +1,6 @@
 const express = require('express')
 // Load database methods
-const Project = require('../data/helpers/projectModel')
+const Project = require('../../data/helpers/projectModel')
 // Load middleware
 const validateProjectId = require('../middleware')
 const idBodyCheck = [validateProjectId, requiredProjectContent]
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     res.json(data)
   }
   catch (err) {
-    res.status(500).json({ message: `Could not retrieve projects` })
+    res.status(500).json(err)
   }
 })
 

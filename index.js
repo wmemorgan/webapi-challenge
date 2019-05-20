@@ -1,3 +1,13 @@
+require('dotenv').config()
+const server = require(`./server`)
+
+const PORT = process.env.PORT
+
+server.listen(PORT, () => {
+  console.log(`Projects & Actions API server running on port ${PORT}`)
+})
+
+
 /*
 play this: https://www.youtube.com/watch?v=d-diB65scQU
 
@@ -12,3 +22,5 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+
+

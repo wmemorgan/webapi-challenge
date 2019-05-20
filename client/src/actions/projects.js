@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_ENDPOINT = `http://localhost:5000/api/projects`
+const API_ENDPOINT = `http://192.168.254.5:5000/api/projects`
 
 export const FETCH_DATA_START = 'FETCH_DATA_START'
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
@@ -12,12 +12,30 @@ export const getProjects = () => dispatch => {
   axios
     .get(API_ENDPOINT)
     .then(res => {
-      console.log(res.data)
+      console.log(`res`, res.data)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data })
     })
     .catch(err => {
       console.log(err.response)
-      dispatch({ type: FETCH_DATA_FAILURE, payload: err.response })
+      dispatch({ type: FETCH_DATA_FAILURE, payload: err.response})
+    })
+}
+
+export const FETCH_DETAIL_DATA_START = 'FETCH_DATA_START'
+export const FETCH_DETAIL_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
+export const FETCH_DETAIL_DATA_FAILURE = 'FETCH_DATA_FAILURE'
+
+export const getProjectDetails = id => dispatch => {
+  dispatch({ type: FETCH_DATA_START })
+  axios
+    .get(`${API_ENDPOINT}/${id}`)
+    .then(res => {
+      console.log(`res`, res.data)
+      dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+      console.log(err.response)
+      dispatch({ type: FETCH_DATA_FAILURE, payload: err.response})
     })
 }
 

@@ -3,6 +3,7 @@ const express = require('express')
 const Project = require('../data/helpers/projectModel')
 // Load middleware
 const validateProjectId = require('../middleware')
+const idBodyCheck = [validateProjectId, requiredProjectContent]
 // Instatiantiate Express Router
 const router = express.Router()
 
@@ -35,12 +36,13 @@ router.post('/', requiredProjectContent, async (req, res) => {
 })
 
 //===== PUT methods ===== //
-router.put('/', async (req, res) => {
+router.put('/:id', idBodyCheck, async (req, res) => {
   try {
-
+    let data = await Project.update(req.params.id, req.body)
+    res.json(data)
   }
   catch (err) {
-
+    res.status(500).json({ message: `Error updating project record` })
   }
 })
 

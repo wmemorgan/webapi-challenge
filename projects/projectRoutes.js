@@ -24,17 +24,18 @@ router.get('/:id', validateProjectId, (req, res) => {
 
 
 //===== POST methods ===== //
-router.post('/', async (req, res) => {
+router.post('/', requiredProjectContent, async (req, res) => {
   try {
-
+    let data = await Project.insert(req.body)
+    res.status(201).json(data)
   }
   catch (err) {
-
+    res.status(500).json({ message: `Error creating project record` })
   }
 })
 
 //===== PUT methods ===== //
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
   try {
 
   }
@@ -56,7 +57,15 @@ router.delete('/:id', async (req, res) => {
 
 
 // ==== Custom middleware ==== //
-
+function requiredProjectContent(req, res, next) {
+  if (!req.body || !Object.keys(req.body).length) {
+    res.status(400).json({ message: "Missing project data" })
+  } else if (!req.body.name || !req.body.description) {
+    res.status(400).json({ message: "Missing required name or description field." })
+  } else {
+    next()
+  }
+}
 
 
 module.exports = router

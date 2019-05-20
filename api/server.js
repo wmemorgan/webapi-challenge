@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const logger = require('morgan')
 
 // Resource Routes
@@ -10,6 +11,7 @@ const server = express()
 //==== Global middleware ==== //
 const validateProjectId = require('./middleware')
 server.use(express.json())
+server.use(cors())
 server.use(logger(`dev`))
 
 server.use(`/api/projects`, projectRoutes)

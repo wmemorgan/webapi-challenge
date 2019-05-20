@@ -22,8 +22,6 @@ router.get('/:id', validateProjectId, (req, res) => {
   res.json(req.project)
 })
 
-
-
 //===== POST methods ===== //
 router.post('/', requiredProjectContent, async (req, res) => {
   try {
@@ -46,17 +44,19 @@ router.put('/:id', idBodyCheck, async (req, res) => {
   }
 })
 
-
 //===== DELETE methods ===== //
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateProjectId, async (req, res) => {
   try {
-
+    let data = await Project.remove(req.params.id)
+    if (data <= 0) throw err
+    else {
+      res.json({ message: `Successfully deleted project ${req.params.id} `})
+    }
   }
   catch (err) {
-
+    res.status(500).json({ message: `Error deleting project record` })
   }
 })
-
 
 // ==== Custom middleware ==== //
 function requiredProjectContent(req, res, next) {
@@ -68,6 +68,5 @@ function requiredProjectContent(req, res, next) {
     next()
   }
 }
-
 
 module.exports = router

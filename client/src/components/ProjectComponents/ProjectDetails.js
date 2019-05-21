@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import { updateProject, deleteProject } from '../../actions/projects'
 
+import ActionBoard from '../ActionComponents/ActionBoard'
 import * as S from './ProjectStyles'
 import Button from '../DesignComponents/Button'
 
@@ -69,7 +70,7 @@ class Project extends Component {
     }
     console.log(`handleUpdate ID: `, updatedProject.id)
     // invoke data update action creator
-    this.props.updateProject(updatedProject)
+    this.props.updateData(updatedProject)
     console.log(`Form submitted data sent: ${JSON.stringify(this.state)}`)
 
     // reset form fields
@@ -77,7 +78,7 @@ class Project extends Component {
   }
 
   handleDelete = id => {
-    this.props.deleteProject(id)
+    this.props.deleteData(id)
     this.props.history.push('/')
   }
 
@@ -86,7 +87,7 @@ class Project extends Component {
   }
 
   render() {
-    const { name, id, description, actions } = this.state
+    const { name, id, description } = this.state
     return (
       <>
         <S.ProjectInfoContainer>
@@ -122,18 +123,7 @@ class Project extends Component {
                   onChange={this.toggleProjectComplete}
                 />
               </S.CheckBoxGroup>
-              <div className="stat-category">Actions:</div>
-              <ul>
-                {actions.map(action => (
-                  <li key={action.id}>
-                    <p>{action.description}</p>
-                    <p>{action.notes}</p>
-                    <p>{action.completed}</p>
-                  </li>
-                ))
-                }
-              </ul>
-
+              <ActionBoard {...this.state} {...this.props}/>
             </div>
             <S.ButtonMenu {...this.state} onClick={this.handleUpdate}>
               <Button update>Update</Button>
@@ -146,5 +136,9 @@ class Project extends Component {
   }
 }
 
-export default connect(null, { updateProject, deleteProject })(Project);
+export default connect(null, 
+  { 
+    updateData: updateProject, 
+    deleteData: deleteProject 
+  })(Project);
 

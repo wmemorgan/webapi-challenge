@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // const API_ENDPOINT = `http://localhost:5000/api/projects`
-const API_ENDPOINT = process.env.API_ENDPOINT
+const API_ENDPOINT = 'https://wme-projects-api-stretch.herokuapp.com/api/projects'
 
 export const FETCH_DATA_START = 'FETCH_DATA_START'
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'

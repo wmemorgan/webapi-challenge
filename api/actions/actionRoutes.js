@@ -1,6 +1,7 @@
 const express = require('express')
 // Load database methods
 const Action = require('../../data/helpers/actionModel')
+const Project = require('../../data/helpers/projectModel')
 // Load middleware
 const idContentCheck = [validateActionId, requiredActionContent]
 // Instantiate Express Router
@@ -8,7 +9,7 @@ const router = express.Router()
 
 //===== GET methods ===== //
 router.get('/', async (req, res) => {
-  let data = await Action.get()
+  let data = await Project.getProjectActions(req.project.id)
   res.json(data)
 })
 

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { updateProject, deleteProject } from '../../actions/projects'
 
 import * as S from './ProjectStyles'
 import Button from '../DesignComponents/Button'
+
+const API_ENDPOINT = process.env.API_ENDPOINT || `http://10.6.5.229:5000/api/projects`
 
 class Project extends Component {
   state = {
@@ -12,22 +15,33 @@ class Project extends Component {
     id: this.props.project.id,
     name: '',
     descriptions: '',
-    completed: this.props.project.completed
+    completed: this.props.project.completed,
+    actions: []
   }
 
-  prePopulateForm = () => {
-    const { name, description } = this.props.project
-    this.setState({
-      name,
-      description
-    })
+  prePopulateForm = async id => {
+    try {
+      let projectDetail = await axios.get(`${API_ENDPOINT}/${this.state.id}`)
+      console.log(`Invoke prePopulateForm: `, projectDetail)
+      const { name, description, completed, actions } = projectDetail.data
+      this.setState({
+        name,
+        description,
+        completed,
+        actions
+      })
+    }
+
+    catch (err) {
+      console.log(`Error occurred: `, err)
+    }
   }
 
   toggleEdit() {
     this.setState(prevState => (
       { edit: !prevState.edit }
     ),
-      () => this.prePopulateForm()
+      () => this.prePopulateForm(this.props.project.id)
     )
   }
 
@@ -37,11 +51,7 @@ class Project extends Component {
       () => {
         console.log(`toggleProjectComplete: `, this.state.completed)
         // Update project record
-        let updatedProject = {
-          ...this.props.project,
-          completed: this.state.completed
-        }
-        this.props.updateData(updatedProject)
+        this.handleUpdate()
       }
     )
   }  
@@ -50,19 +60,20 @@ class Project extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleUpdate = e => {
-    e.preventDefault()
+  handleUpdate = () => {
+    let updatedProject = {
+      id: this.state.id,
+      name: this.state.name,
+      description: this.state.description,
+      completed: this.state.completed
+    }
+    console.log(`handleUpdate ID: `, updatedProject.id)
     // invoke data update action creator
-    this.props.updateProject(this.state)
+    this.props.updateProject(updatedProject)
     console.log(`Form submitted data sent: ${JSON.stringify(this.state)}`)
 
     // reset form fields
-    this.setState({
-      edit: false,
-      id: this.props.project.id,
-      name: '',
-      description: ''
-    })
+    this.setState({edit: false})
   }
 
   handleDelete = id => {
@@ -70,8 +81,12 @@ class Project extends Component {
     this.props.history.push('/')
   }
 
+  componentDidMount() {
+    this.prePopulateForm(this.state.id)
+  }
+
   render() {
-    const { name, id, description, actions } = this.props.project
+    const { name, id, description, actions } = this.state
     return (
       <>
         <S.ProjectInfoContainer>
@@ -94,7 +109,7 @@ class Project extends Component {
               <div className="stat-category">Description:</div>
               {!this.state.edit ?
                 <div className="stat-data">{description}</div> :
-                <input name="description" type="number"
+                <input name="description" type="text"
                   placeholder="Description" onChange={this.handleInput}
                   value={this.state.description}
                 />
@@ -108,15 +123,17 @@ class Project extends Component {
                 />
               </S.CheckBoxGroup>
               <div className="stat-category">Actions:</div>
-              {!this.state.edit ?
-                <div className="stat-data">{actions}</div> :
-                <input
-                  onChange={this.handleInput}
-                  placeholder="actions"
-                  value={this.state.height}
-                  name="actions"
-                />
-              }
+              <ul>
+                {actions.map(action => (
+                  <li key={action.id}>
+                    <p>{action.description}</p>
+                    <p>{action.notes}</p>
+                    <p>{action.completed}</p>
+                  </li>
+                ))
+                }
+              </ul>
+
             </div>
             <S.ButtonMenu {...this.state} onClick={this.handleUpdate}>
               <Button update>Update</Button>

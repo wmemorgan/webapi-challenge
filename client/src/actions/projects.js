@@ -8,7 +8,7 @@ export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
 export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE'
 
 export const getProjects = () => dispatch => {
-  console.log(`API_ENDPOINT: `, API_ENDPOINT)
+  console.log(`getProjects API_ENDPOINT`, API_ENDPOINT)
   dispatch({ type: FETCH_DATA_START })
   axios
     .get(API_ENDPOINT)

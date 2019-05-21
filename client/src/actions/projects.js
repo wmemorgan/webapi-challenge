@@ -12,7 +12,7 @@ export const getProjects = () => dispatch => {
   axios
     .get(API_ENDPOINT)
     .then(res => {
-      console.log(`res`, res.data)
+      console.log(`getProjects() res`, res.data)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -30,7 +30,7 @@ export const addProject = project => dispatch => {
   axios
     .post(API_ENDPOINT, project)
     .then(res => {
-      console.log(res.data)
+      console.log(`addProject() res: `, res.data)
       dispatch({ type: ADD_DATA_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -48,7 +48,7 @@ export const updateProject = project => dispatch => {
   axios
     .put(`${API_ENDPOINT}/${project.id}`, project)
     .then(res => {
-      console.log(res.data)
+      console.log(`updateProject() res: `, res.data)
       dispatch({ type: UPDATE_DATA_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -66,7 +66,7 @@ export const deleteProject = id => dispatch => {
   axios
     .delete(`${API_ENDPOINT}/${id}`)
     .then(res => {
-      console.log(res.data)
+      console.log(`deleteProject res: `, res.data)
       dispatch({ type: DELETE_DATA_SUCCESS, payload: res.data })
     })
     .catch(err => {

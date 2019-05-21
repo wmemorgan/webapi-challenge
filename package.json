@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "yarn server",
-    "server": "nodemon index.j"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",

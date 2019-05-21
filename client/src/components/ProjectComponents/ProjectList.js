@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 
 import * as S from './ProjectStyles'
 
@@ -19,7 +20,10 @@ class ProjectList extends Component {
             </S.Preview>
           </Link>
         ))) : (
-          <h2>Loading...</h2>
+          <S.SpinnerContainer>
+            <h2>Loading...</h2>
+            <Loader type="Puff" color="#265077" height="60" width="60" />
+          </S.SpinnerContainer>
         )}
       </S.ProjectListContainer>
     )

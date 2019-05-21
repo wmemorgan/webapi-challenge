@@ -19,8 +19,11 @@ router.get('/:id', validateActionId, async (req, res) => {
 //===== POST methods ===== //
 router.post('/', requiredActionContent, async (req, res) => {
   try {
-    let data = await Action.insert(req.body)
-    res.status(201).json(data)
+    let newData = await Action.insert(req.body)
+    if (newData) {
+      let data = await Action.get()
+      res.status(201).json(data)
+    } else throw err
   }
   catch (err) {
     res.status(500).json({ message: `Error creating action item` })
@@ -30,8 +33,11 @@ router.post('/', requiredActionContent, async (req, res) => {
 //===== PUT methods ===== //
 router.put('/:id', idContentCheck, async (req, res) => {
   try {
-    let data = await Action.update(req.params.id, req.body)
-    res.json(data)
+    let updatedData = await Action.update(req.params.id, req.body)
+    if (updatedData) {
+      let data = await Action.get()
+      res.status(201).json(data)
+    } else throw err
   }
   catch (err) {
     res.status(500).json({ message: `Error updating action item` })
@@ -41,10 +47,11 @@ router.put('/:id', idContentCheck, async (req, res) => {
 //===== DELETE methods ===== //
 router.delete('/:id', validateActionId, async (req, res) => {
   try {
-    let data = await Action.remove(req.params.id)
-    if (data <= 0) throw err
+    let deleteData = await Action.remove(req.params.id)
+    if (deleteData <= 0) throw err
     else {
-      res.json({ message: `Successfully deleted action item number: ${req.params.id}. ` })
+      let data = await Action.get()
+      res.json(data)
     }
   }
   catch (err) {

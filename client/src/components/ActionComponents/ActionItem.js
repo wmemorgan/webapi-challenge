@@ -82,14 +82,13 @@ class Action extends Component {
     // prevent default
     e.preventDefault()
     // invoke the delete method and pass id
-    this.props.deleteData(this.state.id)
-    this.props.history.push('/')
+    this.props.deleteData(this.state)
     // reset form field
     this.setState({ id: '' })
   } 
 
   componentDidMount() {
-    this.prePopulateForm(this.state.id)
+    this.prePopulateForm()
   }
 
   render() {
@@ -154,7 +153,7 @@ class Action extends Component {
             this.state.hidden ? '' :
               <i className="fa fa-trash"
                 aria-hidden="true"
-                onClick={(e) => this.handleDelete(e, this.props.slot.id)}
+                onClick={this.handleDelete}
               >
               </i>
           }

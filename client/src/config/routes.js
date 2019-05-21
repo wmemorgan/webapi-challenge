@@ -4,7 +4,7 @@ import { Route, withRouter } from 'react-router-dom'
 
 import {  getProjects } from '../actions/projects'
 
-import Form from '../components/SharedComponents/Form'
+import Form from '../components/ProjectComponents/ProjectForm'
 import ProjectList from '../components/ProjectComponents/ProjectList'
 import Project from '../components/ProjectComponents/ProjectDetails'
 

@@ -164,7 +164,7 @@ export const SpinnerContainer = styled.div`
 
 export const CheckBoxGroup = styled.div`
   align-self: flex-start;
-  width: 105px;
+  width: 85px;
   ${flex('row', 'center', 'space-between')}
   margin: 10px 0;
   font-size: ${fontSizing.s};

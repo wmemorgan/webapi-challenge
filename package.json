@@ -10,7 +10,8 @@
     "server": "nodemon ./api/index.js",
     "start:client": "cd client && yarn start",
     "start:api": "yarn server",
-    "build:client": "cd client && yarn install && yarn build"
+    "build:client": "cd client && yarn install && yarn build",
+    "build": "yarn build:client"
   },
   "repository": {
     "type": "git",

@@ -25,8 +25,11 @@ router.get('/:id', validateProjectId, (req, res) => {
 //===== POST methods ===== //
 router.post('/', requiredProjectContent, async (req, res) => {
   try {
-    let data = await Project.insert(req.body)
-    res.status(201).json(data)
+    let newData = await Project.insert(req.body)
+    if (newData) {
+      let data = await Project.get()
+      res.status(201).json(data)
+    } else throw err
   }
   catch (err) {
     res.status(500).json({ message: `Error creating project record` })
@@ -36,8 +39,11 @@ router.post('/', requiredProjectContent, async (req, res) => {
 //===== PUT methods ===== //
 router.put('/:id', idBodyCheck, async (req, res) => {
   try {
-    let data = await Project.update(req.params.id, req.body)
-    res.json(data)
+    let updatedData = await Project.update(req.params.id, req.body)
+    if (updatedData) {
+      let data = await Project.get()
+      res.json(data)
+    } else throw err
   }
   catch (err) {
     res.status(500).json({ message: `Error updating project record` })
@@ -47,10 +53,11 @@ router.put('/:id', idBodyCheck, async (req, res) => {
 //===== DELETE methods ===== //
 router.delete('/:id', validateProjectId, async (req, res) => {
   try {
-    let data = await Project.remove(req.params.id)
-    if (data <= 0) throw err
+    let deleteData = await Project.remove(req.params.id)
+    if (deleteData <= 0) throw err
     else {
-      res.json({ message: `Successfully deleted project ${req.params.id} `})
+      let data = await Project.get()
+      res.json(data)
     }
   }
   catch (err) {

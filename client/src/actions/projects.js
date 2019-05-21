@@ -21,24 +21,6 @@ export const getProjects = () => dispatch => {
     })
 }
 
-export const FETCH_DETAIL_DATA_START = 'FETCH_DATA_START'
-export const FETCH_DETAIL_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
-export const FETCH_DETAIL_DATA_FAILURE = 'FETCH_DATA_FAILURE'
-
-export const getProjectDetails = id => dispatch => {
-  dispatch({ type: FETCH_DATA_START })
-  axios
-    .get(`${API_ENDPOINT}/${id}`)
-    .then(res => {
-      console.log(`res`, res.data)
-      dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data })
-    })
-    .catch(err => {
-      console.log(err.response)
-      dispatch({ type: FETCH_DATA_FAILURE, payload: err.response})
-    })
-}
-
 export const ADD_DATA_START = 'ADD_DATA_START'
 export const ADD_DATA_SUCCESS = 'ADD_DATA_SUCCESS'
 export const ADD_DATA_FAILURE = 'ADD_DATA_FAILURE'

@@ -22,7 +22,7 @@ router.post('/', requiredActionContent, async (req, res) => {
   try {
     let newData = await Action.insert(req.body)
     if (newData) {
-      let data = await Action.get()
+      let data = await Project.getProjectActions(req.project.id)
       res.status(201).json(data)
     } else throw err
   }
@@ -36,7 +36,7 @@ router.put('/:id', idContentCheck, async (req, res) => {
   try {
     let updatedData = await Action.update(req.params.id, req.body)
     if (updatedData) {
-      let data = await Action.get()
+      let data = await Project.getProjectActions(req.project.id)
       res.status(201).json(data)
     } else throw err
   }
@@ -51,7 +51,7 @@ router.delete('/:id', validateActionId, async (req, res) => {
     let deleteData = await Action.remove(req.params.id)
     if (deleteData <= 0) throw err
     else {
-      let data = await Action.get()
+      let data = await Project.getProjectActions(req.project.id)
       res.json(data)
     }
   }

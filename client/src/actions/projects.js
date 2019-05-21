@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_ENDPOINT = `http://10.6.5.229:5000/api/projects`
+// const API_ENDPOINT = `http://localhost:5000/api/projects`
+const API_ENDPOINT = process.env.API_ENDPOINT
 
 export const FETCH_DATA_START = 'FETCH_DATA_START'
 export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'

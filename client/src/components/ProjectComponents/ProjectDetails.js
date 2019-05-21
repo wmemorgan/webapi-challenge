@@ -8,7 +8,7 @@ import ActionBoard from '../ActionComponents/ActionBoard'
 import * as S from './ProjectStyles'
 import Button from '../DesignComponents/Button'
 
-const API_ENDPOINT = process.env.API_ENDPOINT || `http://10.6.5.229:5000/api/projects`
+const API_ENDPOINT = process.env.API_ENDPOINT
 
 class Project extends Component {
   state = {

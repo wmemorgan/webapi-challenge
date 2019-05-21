@@ -5,9 +5,8 @@ import { addAction, updateAction, deleteAction } from '../../actions/projectActi
 import * as S from './ActionStyles'
 class Form extends Component {
   state = {
-    id: this.props.action ? 
-      this.props.action.id : '',
-    project: this.props.project.id,
+    id: '',
+    project: '',
     description: '',
     notes: '',
     completed: false
@@ -37,14 +36,20 @@ class Form extends Component {
     e.preventDefault()
     // gather form data
     let newRecord = {
-      project_id: this.state.project_id,
+      project_id: this.props.project.id,
       description: this.state.description,
       notes: this.state.notes,
       completed: this.state.completed
     }
     // send new record to api
     this.props.addData(newRecord)
-    console.log(`Form submitted data sent: ${JSON.stringify(newRecord)}`)  
+    console.log(`Form submitted data sent: ${JSON.stringify(newRecord)}`)
+    // reset form fields
+    this.setState({
+      description: '',
+      notes: '',
+      completed: false
+    })  
   }
 
   handleUpdate = e => {
@@ -53,7 +58,7 @@ class Form extends Component {
     // gather form data
     let updatedRecord = {
       id: this.state.id,
-      project_id: this.state.project_id,
+      project_id: this.props.project.id,
       description: this.state.description,
       notes: this.state.notes,
       completed: this.state.completed
@@ -71,7 +76,6 @@ class Form extends Component {
     e.preventDefault()
     // invoke the delete method and pass id
     this.props.deleteData(this.state.id)
-    this.props.history.push('/')
     // reset form field
     this.setState({ id: '' })
   }

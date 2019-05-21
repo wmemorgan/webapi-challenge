@@ -1,16 +1,16 @@
 import {
-  FETCH_DATA_START,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE,
-  ADD_DATA_START,
-  ADD_DATA_SUCCESS,
-  ADD_DATA_FAILURE,
-  UPDATE_DATA_START,
-  UPDATE_DATA_SUCCESS,
-  UPDATE_DATA_FAILURE,
-  DELETE_DATA_START,
-  DELETE_DATA_SUCCESS,
-  DELETE_DATA_FAILURE,
+  FETCH_ACTION_START,
+  FETCH_ACTION_SUCCESS,
+  FETCH_ACTION_FAILURE,
+  ADD_ACTION_START,
+  ADD_ACTION_SUCCESS,
+  ADD_ACTION_FAILURE,
+  UPDATE_ACTION_START,
+  UPDATE_ACTION_SUCCESS,
+  UPDATE_ACTION_FAILURE,
+  DELETE_ACTION_START,
+  DELETE_ACTION_SUCCESS,
+  DELETE_ACTION_FAILURE,
 } from '../actions/projectActions'
 
 const initialState = {
@@ -25,7 +25,7 @@ const initialState = {
 
 export const projectActionsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DATA_START:
+    case FETCH_ACTION_START:
       return {
         ...state,
         fetchingActions: true,
@@ -33,7 +33,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case FETCH_DATA_SUCCESS:
+    case FETCH_ACTION_SUCCESS:
       return {
         ...state,
         actions: action.payload,
@@ -42,7 +42,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case FETCH_DATA_FAILURE:
+    case FETCH_ACTION_FAILURE:
       return {
         ...state,
         actions: [],
@@ -51,7 +51,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: action.payload.status,
       }
 
-    case ADD_DATA_START:
+    case ADD_ACTION_START:
       return {
         ...state,
         addingAction: true,
@@ -59,7 +59,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case ADD_DATA_SUCCESS:
+    case ADD_ACTION_SUCCESS:
       return {
         ...state,
         actions: action.payload,
@@ -68,7 +68,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case ADD_DATA_FAILURE:
+    case ADD_ACTION_FAILURE:
       return {
         ...state,
         actions: [],
@@ -77,7 +77,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: action.payload.status,
       }
 
-    case UPDATE_DATA_START:
+    case UPDATE_ACTION_START:
       return {
         ...state,
         updatingAction: true,
@@ -85,7 +85,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case UPDATE_DATA_SUCCESS:
+    case UPDATE_ACTION_SUCCESS:
       return {
         ...state,
         actions: action.payload,
@@ -94,7 +94,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case UPDATE_DATA_FAILURE:
+    case UPDATE_ACTION_FAILURE:
       return {
         ...state,
         actions: [],
@@ -103,7 +103,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: action.payload.status,
       }
 
-    case DELETE_DATA_START:
+    case DELETE_ACTION_START:
       return {
         ...state,
         deletingAction: true,
@@ -111,7 +111,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case DELETE_DATA_SUCCESS:
+    case DELETE_ACTION_SUCCESS:
       return {
         ...state,
         actions: action.payload,
@@ -120,7 +120,7 @@ export const projectActionsReducer = (state = initialState, action) => {
         errorStatusCode: null,
       }
 
-    case DELETE_DATA_FAILURE:
+    case DELETE_ACTION_FAILURE:
       return {
         ...state,
         actions: [],

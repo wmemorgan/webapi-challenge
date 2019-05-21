@@ -58,10 +58,11 @@ export const FormGroup = styled.div`
     border-radius: 5px;
     font-size: ${fontSizing.ml};
     font-weight: bold;
+    cursor: pointer;
   }
 
   button:hover {
-    border: 1px solid ${color.accent0};
+    border: 1px solid ${color.accent};
   }
 `
 

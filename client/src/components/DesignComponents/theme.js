@@ -1,7 +1,7 @@
 const theme = {
   color: {
-    primaryColor: '#005A9C',
-    primaryDark: '#005A9C',
+    primaryColor: '#265077',
+    primaryDark: '#022140',
     primaryBgShading: '#F5F8FA',
     secondaryColor: '#e4e5eb',
     secondaryBgShading: '#C5CAE9',
@@ -27,9 +27,9 @@ const theme = {
   },
 
   fontStyles: {
-    logoFont: "'Bangers', 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif",
-    headingFont: "'Bangers', 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif",
-    defaultFont: "'Fresca', cursive, Arial, sans-serif"
+    logoFont: "'Open Sans', 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif",
+    headingFont: "'Open Sans', 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif",
+    defaultFont: "'Open Sans', 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif"
   },
 
   fontSizing: { // Based on CSS default font-resizing of 62.5%

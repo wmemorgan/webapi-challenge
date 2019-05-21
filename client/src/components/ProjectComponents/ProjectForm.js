@@ -13,7 +13,7 @@ class Form extends Component {
     completed: false
   }
 
-  toggleProjectComplete = () => {
+  toggleComplete = () => {
     console.log(`toggleProjectComplete before change: `, this.state.completed)
     this.setState({ completed: !this.state.completed },
       () => {
@@ -45,7 +45,7 @@ class Form extends Component {
 
     // send new record to api
     this.props.addData(newRecord)
-        console.log(`Form submitted data sent: ${JSON.stringify(newRecord)}`)
+    console.log(`Form submitted data sent: ${JSON.stringify(newRecord)}`)
     this.props.history.push('/')
 
     // reset form fields
@@ -129,7 +129,7 @@ class Form extends Component {
             <input
             type="checkbox"
             defaultChecked={this.state.completed}
-            onChange={this.toggleProjectComplete}
+            onChange={this.toggleComplete}
             />
           }
           <Button type="submit" {...this.props}>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import { updateAction, deleteAction } from '../../actions/projectActions'
 import * as S from './ActionStyles'
 
-const API_ENDPOINT = process.env.API_ENDPOINT || `http://10.6.5.229:5000/api/projects`
+const API_ENDPOINT = 'https://wme-projects-api-stretch.herokuapp.com/api/projects'
 
 class Action extends Component {
   state = {

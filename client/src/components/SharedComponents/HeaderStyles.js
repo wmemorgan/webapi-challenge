@@ -8,7 +8,8 @@ export const HeaderContainer = styled.header`
   padding: 20px 10px;
   top: 0;
   z-index: 5;
-  box-shadow:  1px 1px 1px 0px rgba(89,89,89,1);
+  // box-shadow:  1px 1px 1px 0px rgba(89,89,89,1);
+  border: 1px solid ${colorScheme.defaultBorderColor};
   background: ${colorScheme.headerBgColor};
 
   & a * {
@@ -17,7 +18,7 @@ export const HeaderContainer = styled.header`
   
   & * {
     color: ${colorScheme.headerFontColor};
-    font-size: ${fontSizing.m};
+    font-size: ${fontSizing.sm};
     
 
     & a {
@@ -25,7 +26,8 @@ export const HeaderContainer = styled.header`
       border-radius: 5px;
       text-transform: uppercase;
       font-family: ${fontStyles.headingFont};
-      letter-spacing: 0.2rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
     }
 
     & a.active {
@@ -34,7 +36,6 @@ export const HeaderContainer = styled.header`
     }
 
     a:hover {
-      text-decoration: underline;
       color: ${colorScheme.headerBgColor};
       background: ${colorScheme.headerFontColor};
     }

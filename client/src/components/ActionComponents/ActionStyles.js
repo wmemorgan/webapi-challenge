@@ -2,18 +2,18 @@ import styled from 'styled-components'
 import { color, colorScheme, fontSizing, flex, breakpoints } from '../DesignComponents/theme'
 
 export const ActionBoardContainer = styled.div`
-  width: 100%;
+  width: 95%;
   max-width: 800px;
   ${flex('column', 'center')};
   margin-top: 20px;
-  padding: 10px;
-  border: 1px solid ${color.tx03};
+  padding-bottom: 20px;
+  border: 1px solid ${color.primaryDark};
   border-radius: 5px;
 
   h2 {
       margin: 20px 0;
       text-align: center;
-      color: ${color.secondaryBgShading};
+      color: ${colorScheme.headingColor};
       font-size: ${fontSizing.s};
   }
 `
@@ -25,15 +25,12 @@ export const ActionFormContainer = styled.div`
   
   form {
     width: 80%;
-    input {
-
-    }
   }
 
 `
 
 export const FormContainer = styled.form`
-  width: 90%;
+  width: 95%;
   max-width: 600px;
   font-size: ${fontSizing.xs};
 `
@@ -42,24 +39,25 @@ export const FormGroup = styled.div`
   width: 100%;
   ${flex('row', 'center', 'space-between')}
   
-  input {
+  
+  & input  {
     width: 42%;
     height: 40px
     padding: 5px;
     border: 1px solid ${colorScheme.defaultBorderColor};
+    border-radius: 5px;
     font-size: ${fontSizing.xs};
-    background: ${color.txt01};
-    color: ${color.txt04};
   }
 
   button {
     width: 10%;
     height: 40px;
     border: 1px solid ${colorScheme.defaultBorderColor};
+    color: ${color.lightText};
+    background: ${color.accent}
     border-radius: 5px;
-    background: ${color.txt01};
-    color: ${color.txt04};
-    font-size: ${fontSizing.m};
+    font-size: ${fontSizing.ml};
+    font-weight: bold;
   }
 
   button:hover {
@@ -68,7 +66,7 @@ export const FormGroup = styled.div`
 `
 
 export const ActionListContainer = styled.div`
-    width: 90%;
+    width: 95%;
     max-width: 600px;
     ${flex('column', 'flex-start')};
 
@@ -86,10 +84,8 @@ export const ActionContainer = styled.div`
     padding-left: 10px;
     border: 1px solid ${colorScheme.defaultBorderColor};
     border-radius: 5px;
-      background: ${color.txt01};
 
     div {
-      flex: 0 0 43%;
       padding: 5px 0;
       font-size: ${fontSizing.xs};
     }
@@ -116,17 +112,14 @@ export const ActionList = styled.div`
 `
 
 export const ActionItemWrapper = styled.div`
-  width: 100%;
   ${flex('column')};
-  flex: 0 0 80%;
+  flex: 0 0 86%;
 
 `
 
 export const ItemGroup = styled.div`
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  
 `
 
 export const Action = styled.div`
@@ -134,7 +127,7 @@ export const Action = styled.div`
 `
 
 export const DeleteContainer = styled.div`
-  flex: 0 0 10%;
+  flex: 0 0 2%;
   ${flex('column', 'flex-end')};
 
   .fa-ellipsis-v, .fa-edit {

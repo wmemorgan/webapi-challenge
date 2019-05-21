@@ -123,13 +123,14 @@ class Project extends Component {
                   onChange={this.toggleProjectComplete}
                 />
               </S.CheckBoxGroup>
-              <ActionBoard {...this.state} {...this.props}/>
             </div>
+            
             <S.ButtonMenu {...this.state} onClick={this.handleUpdate}>
               <Button update>Update</Button>
             </S.ButtonMenu>
 
           </div>
+          <ActionBoard {...this.state} {...this.props} />
         </S.ProjectInfoContainer>
       </>
     )

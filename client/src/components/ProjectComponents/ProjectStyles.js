@@ -8,20 +8,16 @@ export const ProjectListContainer = styled.div`
   width: 600px;
   ${flex('column', 'center', 'center')}
   padding: 20px 10px;
-  box-shadow:  10px 10px 5px 0px rgba(0,0,0,0.75);
+  border: 1px solid ${colorScheme.defaultBorderColor};
+  border-radius: 5px;
+  box-shadow: 0 8px 6px -6px rgba(0,0,0,0.75);
   background: ${color.lightText};
   font-size: ${fontSizing.s};
 
   h1 {
-    font-size: ${fontSizing.xl};
-    letter-spacing: 0.5rem;
-    color: ${color.accent};
-    
-    text-shadow:
-      -1px -1px 0 ${color.primaryColor},  
-      1px -1px 0 ${color.primaryColor},
-      -1px 1px 0 ${color.primaryColor},
-      1px 1px 0 ${color.primaryColor};
+    font-size: ${fontSizing.l};
+    letter-spacing: 0.15rem;
+    color: ${colorScheme.headingColor};
   }
 
   a {
@@ -46,9 +42,19 @@ export const Preview = styled.div`
   ${flex('column','center','center')}
   margin: 10px 0;
   padding: 10px;
-  border: 1px solid ${color.defaultFontColor};
+  border: 1px solid ${colorScheme.defaultBorderColor};
+  border-radius: 5px;
   background: ${color.primaryBgShading};
+  font-size: ${fontSizing.xs};
   cursor: pointer;
+
+  & div {
+    margin: 5px 0;
+  }
+
+  & div:first-child {
+    font-weight: bold;
+  }
 
   &:hover {
     color: ${color.lightText};
@@ -58,11 +64,13 @@ export const Preview = styled.div`
 `
 
 export const ProjectInfoContainer = styled.div`
-  ${flex('column')};
+  ${flex('column','center')};
   width: 600px;
   margin: 20px 0;
+  padding-bottom: 20px;
+  border: 1px solid ${colorScheme.defaultBorderColor};
   border-radius: 5px;
-  box-shadow:  10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow:  0 8px 6px -6px rgba(0,0,0,0.75);
   background: ${color.lightText};
 
   @media ${breakpoints[0]} {
@@ -88,14 +96,14 @@ export const ProjectInfoContainer = styled.div`
     }
   }
 
-  .smurf-info {
+  .project-info {
     ${flex('column', 'flex-start', 'center')}
     padding: 20px;
 
     h3 {
       margin: 10px 0;
-      font-size: ${fontSizing.ml};
-      letter-spacing: 0.30rem;
+      font-size: ${fontSizing.m};
+      letter-spacing: 0.15rem;
       color: ${colorScheme.headingColor};
     }
 
@@ -104,29 +112,40 @@ export const ProjectInfoContainer = styled.div`
       font-size: ${fontSizing.m};
     }
     
-    .smurf-stats {
+    .project-stats {
       display: grid;
       grid-template-columns: 1fr 4fr;
       grid-gap: 10px;
       
       & * {
-        font-size: ${fontSizing.m};
+        font-size: ${fontSizing.s};
 
         @media ${breakpoints[0]} {
-          font-size: ${fontSizing.s};
+          font-size: ${fontSizing.xs};
         }
       }
 
       .stat-category {
-        font-weight: bolder;
-        color: ${color.emphasis};
+        font-weight: bold;
+        color: ${color.primaryDark};
       }
+
+      .stat-data {
+        font-size: ${fontSizing.xs};
+        word-spacing: 1.4;
+        line-height: 1.4;
+      }
+      
 
     }
 
     @media ${breakpoints[0]} {
       h3 {
         font-size: ${fontSizing.sm};
+      }
+
+      .stat-data {
+        font-size: ${fontSizing.xxs};
       }
     }
 }
@@ -164,9 +183,10 @@ export const SpinnerContainer = styled.div`
 
 export const CheckBoxGroup = styled.div`
   align-self: flex-start;
-  width: 85px;
+  width: 105px;
   ${flex('row', 'center', 'space-between')}
-  margin: 10px 0;
   font-size: ${fontSizing.s};
+  font-weight: bold;
+  color: ${color.emphasis};
 `
 

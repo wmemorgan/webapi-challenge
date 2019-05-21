@@ -23,33 +23,13 @@ body * {
 
 body {
   color: ${color.darkText};
-  background: ${color.primaryColor};
+  // background: ${color.primaryBgShading};
   font-family: ${fontStyles.defaultFont}  
 }
 
 h1, h2, h3, h4, h5 {
   font-family: ${fontStyles.headingFont};
-  
-}
-
-h1 {
-  font-size: ${fontSizing.ml};
-  font-weight: bold;
-}
-
-h2 {
-  font-size: ${fontSizing.m};
-  font-weight: bold;
-}
-
-h3 {
-  font-size: ${fontSizing.s};
-  font-weight: bold;
-}
-
-h4 {
-  font-size: ${fontSizing.xs};
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 p {

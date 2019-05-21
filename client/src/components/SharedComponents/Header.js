@@ -40,7 +40,7 @@ class Header extends Component {
             Home
         </NavLink>
         <NavLink to='/add' onClick={this.toggleDisplay}>
-          Add Smurf
+          Add Project
         </NavLink>
         </Nav>
       </HeaderContainer>

@@ -58,7 +58,7 @@ export const Preview = styled.div`
 
   &:hover {
     color: ${color.lightText};
-    background: ${colorScheme.defaultFontColor};
+    background: ${color.primaryColor};
   } 
 
 `

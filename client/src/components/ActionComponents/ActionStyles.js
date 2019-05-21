@@ -63,6 +63,8 @@ export const FormGroup = styled.div`
 
   button:hover {
     border: 1px solid ${color.accent};
+    color: ${color.accent};
+    background: ${color.lightText};
   }
 `
 

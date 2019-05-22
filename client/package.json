@@ -14,7 +14,8 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
-    "styled-reset": "^2.0.12"
+    "styled-reset": "^2.0.12",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,8 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "redux-logger": "^3.0.6"
   }
 }

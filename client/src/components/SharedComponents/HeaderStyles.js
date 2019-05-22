@@ -8,8 +8,7 @@ export const HeaderContainer = styled.header`
   padding: 20px 10px;
   top: 0;
   z-index: 5;
-  // box-shadow:  1px 1px 1px 0px rgba(89,89,89,1);
-  border: 1px solid ${colorScheme.defaultBorderColor};
+  box-shadow: 0 5px 3px -3px rgba(0,0,0,0.35);
   background: ${colorScheme.headerBgColor};
 
   & a * {

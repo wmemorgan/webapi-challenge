@@ -8,7 +8,7 @@ export const ProjectListContainer = styled.div`
   width: 600px;
   ${flex('column', 'center', 'center')}
   padding: 20px 10px;
-  border: 1px solid ${colorScheme.defaultBorderColor};
+  border: 1px solid ${colorScheme.secondaryBorderColor};
   border-radius: 5px;
   box-shadow: 0 8px 6px -6px rgba(0,0,0,0.75);
   background: ${color.lightText};
@@ -68,7 +68,7 @@ export const ProjectInfoContainer = styled.div`
   width: 600px;
   margin: 20px 0;
   padding-bottom: 20px;
-  border: 1px solid ${colorScheme.defaultBorderColor};
+  border: 1px solid ${colorScheme.secondaryBorderColor};
   border-radius: 5px;
   box-shadow:  0 8px 6px -6px rgba(0,0,0,0.75);
   background: ${color.lightText};

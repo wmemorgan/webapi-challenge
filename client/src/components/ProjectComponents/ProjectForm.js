@@ -10,18 +10,18 @@ class Form extends Component {
     id: '',
     name: '',
     description: '',
-    completed: false
+    is_complete: false
   }
 
   toggleComplete = () => {
-    console.log(`toggleProjectComplete before change: `, this.state.completed)
-    this.setState({ completed: !this.state.completed },
+    console.log(`toggleProjectComplete before change: `, this.state.is_complete)
+    this.setState({ is_complete: !this.state.is_complete },
       () => {
-        console.log(`toggleProjectComplete: `, this.state.completed)
+        console.log(`toggleProjectComplete: `, this.state.is_complete)
         // Update project record
         let updatedProject = {
           ...this.props.project,
-          completed: this.state.completed
+          is_complete: this.state.is_complete
         }
         this.props.updateData(updatedProject)
       }
@@ -40,7 +40,7 @@ class Form extends Component {
     let newRecord = {
       name: this.state.name,
       description: this.state.description,
-      completed: this.state.completed
+      is_complete: this.state.is_complete
     }
 
     // send new record to api
@@ -53,7 +53,7 @@ class Form extends Component {
       id: '',
       name: '',
       description: '',
-      completed: false
+      is_complete: false
     })
   }
 
@@ -64,7 +64,7 @@ class Form extends Component {
       id: this.state.id,
       name: this.state.name,
       description: this.state.description,
-      completed: this.state.completed
+      is_complete: this.state.is_complete
     }
     console.log(`handleUpdate ID: `, updatedProject.id)
     // invoke data update action creator
@@ -128,7 +128,7 @@ class Form extends Component {
           {(this.props.update || this.props.delete) &&
             <input
             type="checkbox"
-            defaultChecked={this.state.completed}
+            defaultChecked={this.state.is_complete}
             onChange={this.toggleComplete}
             />
           }

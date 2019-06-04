@@ -14,7 +14,7 @@ class Action extends Component {
     project_id: this.props.project.id,
     description: '',
     notes: '',
-    completed: false,
+    is_complete: false,
     hidden: true,
     edit: false
   }
@@ -68,7 +68,7 @@ class Action extends Component {
       project_id: this.state.project_id,
       description: this.state.description,
       notes: this.state.notes,
-      completed: this.state.completed
+      is_complete: this.state.is_complete
     }
     // invoke data update action creator
     this.props.updateData(updatedRecord)
@@ -105,10 +105,10 @@ class Action extends Component {
               <S.Action onClick={() => this.toggleEdit()}>{this.state.notes}</S.Action>
             </S.ItemGroup>
             <S.CheckBoxGroup>
-              <label htmlFor="">Completed:</label>
+              <label htmlFor="">is_complete:</label>
               <input
                 type="checkbox"
-                defaultChecked={this.state.completed}
+                defaultChecked={this.state.is_complete}
                 onChange={this.toggleProjectComplete}
               />
             </S.CheckBoxGroup>
@@ -136,7 +136,7 @@ class Action extends Component {
               {(this.props.update || this.props.delete) &&
                 <input
                 type="checkbox"
-                defaultChecked={this.state.completed}
+                defaultChecked={this.state.is_complete}
                 onChange={this.toggleComplete}
                 />
               }              

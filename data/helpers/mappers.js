@@ -16,13 +16,13 @@ function booleanToint(bool) {
 function projectToBody(project) {
   const result = {
     ...project,
-    completed: intToBoolean(project.completed),
+    is_complete: intToBoolean(project.is_complete),
   };
 
   if (project.actions) {
     result.actions = project.actions.map(action => ({
       ...action,
-      completed: intToBoolean(action.completed),
+      is_complete: intToBoolean(action.is_complete),
     }));
   }
 
@@ -32,6 +32,6 @@ function projectToBody(project) {
 function actionToBody(action) {
   return {
     ...action,
-    completed: intToBoolean(action.completed),
+    is_complete: intToBoolean(action.is_complete),
   };
 }

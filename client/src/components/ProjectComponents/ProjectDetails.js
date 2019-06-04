@@ -16,7 +16,7 @@ class Project extends Component {
     id: this.props.project.id,
     name: '',
     descriptions: '',
-    completed: this.props.project.completed,
+    is_complete: this.props.project.is_complete,
     actions: []
   }
 
@@ -47,10 +47,10 @@ class Project extends Component {
   }
 
   toggleProjectComplete = () => {
-    console.log(`toggleProjectComplete before change: `, this.state.completed)
-    this.setState({ completed: !this.state.completed },
+    console.log(`toggleProjectComplete before change: `, this.state.is_complete)
+    this.setState({ is_complete: !this.state.is_complete },
       () => {
-        console.log(`toggleProjectComplete: `, this.state.completed)
+        console.log(`toggleProjectComplete: `, this.state.is_complete)
         // Update project record
         this.handleUpdate()
       }
@@ -66,7 +66,7 @@ class Project extends Component {
       id: this.state.id,
       name: this.state.name,
       description: this.state.description,
-      completed: this.state.completed
+      is_complete: this.state.is_complete
     }
     console.log(`handleUpdate ID: `, updatedProject.id)
     // invoke data update action creator
@@ -119,7 +119,7 @@ class Project extends Component {
                 <label htmlFor="">Complete:</label>
                 <input
                   type="checkbox"
-                  defaultChecked={this.state.completed}
+                  defaultChecked={this.state.is_complete}
                   onChange={this.toggleProjectComplete}
                 />
               </S.CheckBoxGroup>

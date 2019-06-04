@@ -31,9 +31,13 @@ export const addAction = action => dispatch => {
   dispatch({ type: ADD_ACTION_START })
   axios
     .post(`${API_ENDPOINT}/${action.project_id}/actions`, action)
-    .then(res => {
-      console.log(res.data)
-      dispatch({ type: ADD_ACTION_SUCCESS, payload: res.data })
+    .then((res, err) => {
+      if (res.data) {
+        axios.get(`${API_ENDPOINT}/${action.project_id}/actions`)
+          .then(actions => {
+            dispatch({ type: ADD_ACTION_SUCCESS, payload: actions.data })
+          })
+      } else throw err
     })
     .catch(err => {
       console.log(err.response)
@@ -49,9 +53,13 @@ export const updateAction = action => dispatch => {
   dispatch({ type: UPDATE_ACTION_START })
   axios
     .put(`${API_ENDPOINT}/${action.project_id}/actions/${action.id}`, action)
-    .then(res => {
-      console.log(res.data)
-      dispatch({ type: UPDATE_ACTION_SUCCESS, payload: res.data })
+    .then((res, err) => {
+      if (res.data) {
+        axios.get(`${API_ENDPOINT}/${action.project_id}/actions`)
+          .then(actions => {
+            dispatch({ type: UPDATE_ACTION_SUCCESS, payload: actions.data })
+          })
+      } else throw err
     })
     .catch(err => {
       console.log(err.response)
@@ -67,9 +75,13 @@ export const deleteAction = action => dispatch => {
   dispatch({ type: DELETE_ACTION_START })
   axios
     .delete(`${API_ENDPOINT}/${action.project_id}/actions/${action.id}`)
-    .then(res => {
-      console.log(res.data)
-      dispatch({ type: DELETE_ACTION_SUCCESS, payload: res.data })
+    .then((res, err) => {
+      if (res.data) {
+        axios.get(`${API_ENDPOINT}/${action.project_id}/actions`)
+          .then(actions => {
+            dispatch({ type: DELETE_ACTION_SUCCESS, payload: actions.data })
+          })
+      } else throw err
     })
     .catch(err => {
       console.log(err.response)

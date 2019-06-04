@@ -47,7 +47,7 @@ export const projectsReducer = (state = initialState, action) => {
         ...state,
         projects: [],
         fetchingProjects: false,
-        error: action.payload.data.error,
+        error: action.payload.response,
         errorStatusCode: action.payload.status,
       }
 
@@ -73,7 +73,7 @@ export const projectsReducer = (state = initialState, action) => {
         ...state,
         projects: [],
         addingProject: false,
-        error: action.payload.data.error,
+        error: action.payload.response,
         errorStatusCode: action.payload.status,
       }
 
@@ -99,7 +99,7 @@ export const projectsReducer = (state = initialState, action) => {
         ...state,
         projects: [],
         updatingProject: false,
-        error: action.payload.data.error,
+        error: action.payload.response,
         errorStatusCode: action.payload.status,
       }
 
@@ -125,7 +125,7 @@ export const projectsReducer = (state = initialState, action) => {
         ...state,
         projects: [],
         deletingProject: false,
-        error: action.payload.data.error,
+        error: action.payload.response,
         errorStatusCode: action.payload.status,
       }
 

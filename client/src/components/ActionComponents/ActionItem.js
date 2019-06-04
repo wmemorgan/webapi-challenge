@@ -14,7 +14,7 @@ class Action extends Component {
     project_id: this.props.project.id,
     description: '',
     notes: '',
-    is_complete: false,
+    is_complete: this.props.action.is_complete,
     hidden: true,
     edit: false
   }
@@ -23,12 +23,13 @@ class Action extends Component {
     try {
       let actionItem = await axios.get(`${API_ENDPOINT}/${this.state.project_id}/actions/${this.state.id}`)
       console.log(`Invoke prePopulateForm: `, actionItem)
-      const { id, description, notes, completed } = actionItem.data
+      const { id, project_id, description, notes, is_complete } = actionItem.data
       this.setState({
         id,
+        project_id,
         description,
         notes,
-        completed
+        is_complete
       })
     }
 
@@ -48,6 +49,17 @@ class Action extends Component {
     )
   }
 
+  toggleActionComplete = () => {
+    console.log(`toggleActionComplete before change: `, this.state.is_complete)
+    this.setState({ is_complete: !this.state.is_complete },
+      () => {
+        console.log(`toggleActionComplete: `, this.state.is_complete)
+        // Update project record
+        this.handleUpdate()
+      }
+    )
+  }   
+
   toggleDeleteBtn = e => {
     e.preventDefault()
     this.setState(prevState => ({
@@ -59,9 +71,9 @@ class Action extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-   handleUpdate = e => {
+   handleUpdate = () => {
     // prevent default
-    e.preventDefault()
+    //e.preventDefault()
     // gather form data
     let updatedRecord = {
       id: this.state.id,
@@ -109,7 +121,7 @@ class Action extends Component {
               <input
                 type="checkbox"
                 defaultChecked={this.state.is_complete}
-                onChange={this.toggleProjectComplete}
+                onChange={this.toggleActionComplete}
               />
             </S.CheckBoxGroup>
           </S.ActionItemWrapper> :

@@ -20,15 +20,15 @@ class Project extends Component {
     actions: []
   }
 
-  prePopulateForm = async id => {
+  prePopulateForm = async () => {
     try {
       let projectDetail = await axios.get(`${API_ENDPOINT}/${this.state.id}`)
       console.log(`Invoke prePopulateForm: `, projectDetail)
-      const { name, description, completed, actions } = projectDetail.data
+      const { name, description, is_completed, actions } = projectDetail.data
       this.setState({
         name,
         description,
-        completed,
+        is_completed,
         actions
       })
     }
@@ -42,7 +42,7 @@ class Project extends Component {
     this.setState(prevState => (
       { edit: !prevState.edit }
     ),
-      () => this.prePopulateForm(this.props.project.id)
+      () => this.prePopulateForm()
     )
   }
 
@@ -83,7 +83,7 @@ class Project extends Component {
   }
 
   componentDidMount() {
-    this.prePopulateForm(this.state.id)
+    this.prePopulateForm()
   }
 
   render() {

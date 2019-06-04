@@ -8,7 +8,7 @@ import ActionBoard from '../ActionComponents/ActionBoard'
 import * as S from './ProjectStyles'
 import Button from '../DesignComponents/Button'
 
-const API_ENDPOINT = 'https://wme-projects-api-stretch.herokuapp.com/api/projects'
+const API_ENDPOINT = 'https://wme-projects-api-v2.herokuapp.com/api/projects'
 
 class Project extends Component {
   state = {
